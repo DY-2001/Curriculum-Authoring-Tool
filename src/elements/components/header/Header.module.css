@@ -1,0 +1,22 @@
+.headerContainer {
+
+}
+
+.subjectInput {
+    border: none;
+    outline: none;
+}
+
+.subHeader {
+    display: flex;
+    margin: 10px 0px 10px 0px;
+    gap: 50vh;
+}
+
+.actionContainer {
+    width: 30vh;
+    p:nth-child(n + 2) {
+        font-size: 10px;
+        color: gray;
+    }
+}
