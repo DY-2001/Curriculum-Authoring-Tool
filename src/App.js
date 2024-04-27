@@ -1,12 +1,13 @@
 import { useState } from "react";
 import Home from "./components/home/Home";
+import topics from "./data/topicData";
 import "./App.css";
 
 function App() {
-  const [topics, setTopics] = useState(["dsf", "dsf", "df", "dsf"]);
+  const [topicsData, setTopicsData] = useState(topics);
   return (
     <div className="App">
-      <Home topics={topics} setTopics={setTopics} />
+      <Home topicsData={topicsData} setTopicsData={setTopicsData} />
     </div>
   );
 }
