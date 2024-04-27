@@ -32,7 +32,6 @@ const useTreeOperations = () => {
 
     for (let i = 0; i < tree.subTopics.length; i++) {
       if (tree.subTopics[i].id === id) {
-        console.log("dushyantist delete hogya", tree.subTopics[i]);
         tree.subTopics.splice(i, 1);
         return;
       }
