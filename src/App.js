@@ -1,14 +1,13 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./elements/pages/home/Home";
+import { useState } from "react";
+import Home from "./components/home/Home";
 import "./App.css";
 
 function App() {
+  const [topics, setTopics] = useState(["dsf", "dsf", "df", "dsf"]);
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-      </Routes>
-    </BrowserRouter>
+    <div className="App">
+      <Home topics={topics} setTopics={setTopics} />
+    </div>
   );
 }
 

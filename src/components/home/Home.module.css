@@ -1,0 +1,23 @@
+.curriculumContainer {
+    width: 180vh;
+    height: auto;
+    margin: 80px 150px 0 150px;
+}
+
+.plusIcon {
+    width: 20px;
+    height: 20px;
+}
+
+.addButton {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 5px;
+    margin-top: 30px;
+    border: none;
+    background-color: skyblue;
+}
