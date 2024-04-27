@@ -1,11 +1,29 @@
 import React, { useState } from "react";
 import styles from "./Modal.module.css";
 
-const Modal = ({ isModalOpen, modalType, modalHeader, setIsModalOpen }) => {
+const Modal = ({
+  isModalOpen,
+  topicsData,
+  modalType,
+  modalHeader,
+  setIsModalOpen,
+  insertNode,
+}) => {
   const [inputValue, setInputValue] = useState("");
   if (!isModalOpen) {
     return null;
   }
+
+  const handleSubmit = () => {
+    if (modalType === "standard") {
+      insertNode(topicsData, inputValue);
+      setInputValue("");
+    } else if (modalType === "delete") {
+      console.log("delete");
+    }
+    setIsModalOpen(false);
+  };
+
   return (
     <div className={styles["modalContainer"]}>
       <div className={styles["modalContent"]}>
@@ -33,7 +51,9 @@ const Modal = ({ isModalOpen, modalType, modalHeader, setIsModalOpen }) => {
         </div>
         <div className={styles["modalFooter"]}>
           <button onClick={() => setIsModalOpen(false)}>Cancel</button>
-          <button>{modalType === "delete" ? "Delete" : "Submit"}</button>
+          <button onClick={handleSubmit}>
+            {modalType === "delete" ? "Delete" : "Submit"}
+          </button>
         </div>
       </div>
     </div>

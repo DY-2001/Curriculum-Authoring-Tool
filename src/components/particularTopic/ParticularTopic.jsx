@@ -43,7 +43,7 @@ const ParticularTopic = ({ topicName, topicHierarchy }) => {
               }}
             />
           </div>
-          <div className={styles["actionContainer"]}>
+          <div className={styles["topicContainer"]}>
             <p
               className={classNames(styles["mainTopicStyles"], {
                 [styles["subTopicStyles"]]: topicHierarchy === "2",

@@ -1,26 +1,28 @@
+import { v4 as uuidv4 } from 'uuid';
+
 const topics = {
-  id: "1",
+  id: uuidv4(),
   topicName: "mathematics",
   topicHierarchy: "0",
   subTopics: [
     {
-      id: "2",
+      id: uuidv4(),
       topicName: "number",
       topicHierarchy: "1",
       subTopics: [
         {
-          id: "3",
+          id: uuidv4(),
           topicName: "natural numbers",
           topicHierarchy: "2",
           subTopics: [
             {
-              id: "4",
+              id: uuidv4(),
               topicName: "counting numbers",
               topicHierarchy: "3",
               subTopics: [],
             },
             {
-              id: "5",
+              id: uuidv4(),
               topicName: "positive numbers",
               topicHierarchy: "3",
               subTopics: [],
@@ -28,7 +30,7 @@ const topics = {
           ],
         },
         {
-          id: "6",
+          id: uuidv4(),
           topicName: "whole numbers",
           topicHierarchy: "2",
           subTopics: [],
@@ -36,29 +38,29 @@ const topics = {
       ],
     },
     {
-      id: "7",
+      id: uuidv4(),
       topicName: "algebra",
       topicHierarchy: "1",
       subTopics: [
         {
-          id: "8",
+          id: uuidv4(),
           topicName: "linear algebra",
           topicHierarchy: "2",
           subTopics: [],
         },
         {
-          id: "9",
+          id: uuidv4(),
           topicName: "quadratic algebra",
           topicHierarchy: "2",
           subTopics: [
             {
-              id: "10",
+              id: uuidv4(),
               topicName: "quadratic equations",
               topicHierarchy: "3",
               subTopics: [],
             },
             {
-              id: "11",
+              id: uuidv4(),
               topicName: "quadratic functions",
               topicHierarchy: "3",
               subTopics: [],
@@ -68,18 +70,18 @@ const topics = {
       ],
     },
     {
-      id: "12",
+      id: uuidv4(),
       topicName: "geometry",
       topicHierarchy: "1",
       subTopics: [
         {
-          id: "13",
+          id: uuidv4(),
           topicName: "plane geometry",
           topicHierarchy: "2",
           subTopics: [],
         },
         {
-          id: "14",
+          id: uuidv4(),
           topicName: "solid geometry",
           topicHierarchy: "2",
           subTopics: [],

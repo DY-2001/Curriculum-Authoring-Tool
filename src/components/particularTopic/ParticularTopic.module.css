@@ -12,6 +12,10 @@
     width: 30vh;
 }
 
+.topicContainer {
+    width: 100vh;
+}
+
 .actionIcon {
     width: 18px;
     height: 18px;
@@ -23,6 +27,9 @@
 .mainTopicStyles {
     color: red;
     font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .subTopicStyles {
