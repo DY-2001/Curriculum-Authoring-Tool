@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./Home.module.css";
 import Header from "../header/Header";
 import Topic from "../topic/Topic";
 import Modal from "../modal/Modal";
+import { TopicContext } from "../../App";
 
-const Home = (props) => {
-  const { topicsData, setTopicsData, insertNode } = props;
+const Home = () => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const topicsData = useContext(TopicContext);
 
   return (
     <>
       <div className={styles["curriculumContainer"]}>
         <Header />
-        <Topic topicsData={topicsData} />
+        <Topic subTopicsData={topicsData} />
         <button
           onClick={() => setIsModalOpen(true)}
           className={styles["addButton"]}
@@ -22,12 +23,11 @@ const Home = (props) => {
         </button>
       </div>
       <Modal
-        isModalOpen={isModalOpen}
-        topicsData={topicsData}
         modalType="standard"
+        subTopicsDataId={null}
+        isModalOpen={isModalOpen}
         modalHeader="Add a standard"
         setIsModalOpen={setIsModalOpen}
-        insertNode={insertNode}
       />
     </>
   );

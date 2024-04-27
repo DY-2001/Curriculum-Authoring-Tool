@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./Modal.module.css";
-
+import useTreeOperations from "../../hooks/useTreeOperations";
+import { TopicContext } from "../../App";
 const Modal = ({
-  isModalOpen,
-  topicsData,
   modalType,
+  isModalOpen,
   modalHeader,
+  subTopicsDataId,
   setIsModalOpen,
-  insertNode,
 }) => {
   const [inputValue, setInputValue] = useState("");
+  const { insertNode, deleteNode } = useTreeOperations();
+  const topicsData = useContext(TopicContext);
+
   if (!isModalOpen) {
     return null;
   }
@@ -19,7 +22,7 @@ const Modal = ({
       insertNode(topicsData, inputValue);
       setInputValue("");
     } else if (modalType === "delete") {
-      console.log("delete");
+      deleteNode(topicsData, subTopicsDataId);
     }
     setIsModalOpen(false);
   };

@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 
-const useTraverseTree = () => {
+const useTreeOperations = () => {
   function insertNode(tree, topicName) {
     if (tree.subTopics.length === 0) {
       tree.subTopics.push({
@@ -27,9 +27,23 @@ const useTraverseTree = () => {
     });
   }
 
+  function deleteNode(tree, id) {
+    if (tree.subTopics.length === 0) return;
+
+    for (let i = 0; i < tree.subTopics.length; i++) {
+      if (tree.subTopics[i].id === id) {
+        console.log("dushyantist delete hogya", tree.subTopics[i]);
+        tree.subTopics.splice(i, 1);
+        return;
+      }
+      deleteNode(tree.subTopics[i], id);
+    }
+  }
+
   return {
     insertNode,
+    deleteNode,
   };
 };
 
-export default useTraverseTree;
+export default useTreeOperations;

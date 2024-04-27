@@ -1,33 +1,25 @@
 import ParticularTopic from "../particularTopic/ParticularTopic";
 
-const Topic = ({ topicsData }) => {
-  if (topicsData.topicHierarchy === "3") {
-    return (
-      <ParticularTopic
-        topicName={topicsData.topicName}
-        topicHierarchy={topicsData.topicHierarchy}
-      />
-    );
+const Topic = ({ subTopicsData }) => {
+  if (subTopicsData.topicHierarchy === "3") {
+    return <ParticularTopic subTopicsData={subTopicsData} />;
   } else if (
-    topicsData.topicHierarchy === "1" ||
-    topicsData.topicHierarchy === "2"
+    subTopicsData.topicHierarchy === "1" ||
+    subTopicsData.topicHierarchy === "2"
   ) {
     return (
       <>
-        <ParticularTopic
-          topicName={topicsData.topicName}
-          topicHierarchy={topicsData.topicHierarchy}
-        />
-        {topicsData.subTopics.map((topicsData) => (
-          <Topic key={topicsData.id} topicsData={topicsData} />
+        <ParticularTopic subTopicsData={subTopicsData} />
+        {subTopicsData.subTopics.map((subTopicsData) => (
+          <Topic key={subTopicsData.id} subTopicsData={subTopicsData} />
         ))}
       </>
     );
   } else {
     return (
       <>
-        {topicsData.subTopics.map((topicsData) => (
-          <Topic key={topicsData.id} topicsData={topicsData} />
+        {subTopicsData.subTopics.map((subTopicsData) => (
+          <Topic key={subTopicsData.id} subTopicsData={subTopicsData} />
         ))}
       </>
     );

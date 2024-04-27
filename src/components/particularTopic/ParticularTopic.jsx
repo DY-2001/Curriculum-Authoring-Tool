@@ -1,16 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./ParticularTopic.module.css";
 import classNames from "classnames";
 import Line from "../line/Line";
 import Modal from "../modal/Modal";
 
-const ParticularTopic = ({ topicName, topicHierarchy }) => {
+const ParticularTopic = ({ subTopicsData }) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  
 
   let className = "";
-  if (topicHierarchy === "2") {
+  if (subTopicsData.topicHierarchy === "2") {
     className = styles.subTopicStyles;
-  } else if (topicHierarchy === "3") {
+  } else if (subTopicsData.topicHierarchy === "3") {
     className = styles.subSubTopicStyles;
   }
 
@@ -46,20 +47,23 @@ const ParticularTopic = ({ topicName, topicHierarchy }) => {
           <div className={styles["topicContainer"]}>
             <p
               className={classNames(styles["mainTopicStyles"], {
-                [styles["subTopicStyles"]]: topicHierarchy === "2",
-                [styles["subSubTopicStyles"]]: topicHierarchy === "3",
+                [styles["subTopicStyles"]]:
+                  subTopicsData.topicHierarchy === "2",
+                [styles["subSubTopicStyles"]]:
+                  subTopicsData.topicHierarchy === "3",
               })}
             >
-              {topicName}
+              {subTopicsData.topicName}
             </p>
           </div>
         </div>
         <Line />
       </div>
       <Modal
-        isModalOpen={isModalOpen}
         modalType="delete"
+        isModalOpen={isModalOpen}
         modalHeader="Delete this topic"
+        subTopicsDataId={subTopicsData.id}
         setIsModalOpen={setIsModalOpen}
       />
     </>
