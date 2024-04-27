@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import styles from "./ParticularTopic.module.css";
 import classNames from "classnames";
 import Line from "../line/Line";
