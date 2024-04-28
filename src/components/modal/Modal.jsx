@@ -38,7 +38,10 @@ const Modal = ({
 
           <img
             src="./images/close.png"
-            onClick={() => setIsModalOpen(false)}
+            onClick={() => {
+              setIsModalOpen(false);
+              setInputValue("");
+            }}
             className={styles["close"]}
           />
         </div>
@@ -62,7 +65,10 @@ const Modal = ({
         <div className={styles["modalFooter"]}>
           <button
             className={styles["actionButton"]}
-            onClick={() => setIsModalOpen(false)}
+            onClick={() => {
+              setIsModalOpen(false);
+              setInputValue("");
+            }}
           >
             Cancel
           </button>

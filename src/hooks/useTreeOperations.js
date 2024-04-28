@@ -105,6 +105,7 @@ const useTreeOperations = () => {
       let newTree = tree.subTopics[i];
       for (let j = 0; j < newTree.subTopics.length; j++) {
         if (newTree.subTopics[j].id === id) {
+          if(hierarchy === "2" && newTree.subTopics[j].subTopics.length > 0) return tree;
           newTree.subTopics[j].isHidden = true;
           tree.subTopics.splice(i + 1, 0, {
             id: uuidv4(),
@@ -118,6 +119,7 @@ const useTreeOperations = () => {
           let newSubTree = newTree.subTopics[j];
           for (let k = 0; k < newSubTree.subTopics.length; k++) {
             if (newSubTree.subTopics[k].id === id) {
+              if(hierarchy === "3" && newSubTree.subTopics[k].subTopics.length > 0) return tree;
               newSubTree.subTopics[k].isHidden = true;
               newTree.subTopics.splice(j + 1, 0, {
                 id: uuidv4(),
