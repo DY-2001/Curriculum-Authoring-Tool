@@ -6,7 +6,7 @@ import Modal from "../modal/Modal";
 import { TopicContext } from "../../App";
 import useTreeOperations from "../../hooks/useTreeOperations";
 
-const ParticularTopic = ({ subTopicsData, dragItemId, setDragItemId }) => {
+const ParticularTopic = ({ subTopicsData, dragItem, setDragItem }) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const { topicsData, setTopicsData } = useContext(TopicContext);
   const { indentNode, outdentNode, editNameNode, handleDragAndDrop } =
@@ -53,10 +53,26 @@ const ParticularTopic = ({ subTopicsData, dragItemId, setDragItemId }) => {
     setTopicsData(newTreeData);
   };
 
-  const handleDrop = (e, dropItemId) => {
-    if (dragItemId === dropItemId) return;
+  const handleDrag = () => {
+    let draggedItem = {
+      dragItemId: subTopicsData.id,
+      dragItemHierarchy: subTopicsData.topicHierarchy,
+    };
+    setDragItem(draggedItem);
+  };
+
+  const handleDrop = (e, dropItemId, dropItemHierarchy) => {
+    if (
+      dragItem.dragItemId === dropItemId ||
+      dragItem.dragItemHierarchy > dropItemHierarchy
+    )
+      return;
     let TreeData = { ...topicsData };
-    let newTreeData = handleDragAndDrop(TreeData, dragItemId, dropItemId);
+    let newTreeData = handleDragAndDrop(
+      TreeData,
+      dragItem.dragItemId,
+      dropItemId
+    );
     setTopicsData(newTreeData);
   };
 
@@ -64,12 +80,14 @@ const ParticularTopic = ({ subTopicsData, dragItemId, setDragItemId }) => {
     <>
       <div
         onDragOver={(e) => e.preventDefault()}
-        onDrop={(e) => handleDrop(e, subTopicsData.id)}
+        onDrop={(e) =>
+          handleDrop(e, subTopicsData.id, subTopicsData.topicHierarchy)
+        }
         className={styles["topicStyles"]}
       >
         <div
           draggable={true}
-          onDragStart={() => setDragItemId(subTopicsData.id)}
+          onDragStart={handleDrag}
           className={styles["topicActionAndName"]}
         >
           <div className={styles["actionContainer"]}>

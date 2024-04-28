@@ -1,11 +1,11 @@
 import ParticularTopic from "../particularTopic/ParticularTopic";
 
-const Topic = ({ subTopicsData, dragItemId, setDragItemId }) => {
+const Topic = ({ subTopicsData, dragItem, setDragItem }) => {
   if (subTopicsData.topicHierarchy === "3") {
     return (
       <ParticularTopic
-        dragItemId={dragItemId}
-        setDragItemId={setDragItemId}
+        dragItem={dragItem}
+        setDragItem={setDragItem}
         subTopicsData={subTopicsData}
       />
     );
@@ -16,8 +16,8 @@ const Topic = ({ subTopicsData, dragItemId, setDragItemId }) => {
     return (
       <>
         <ParticularTopic
-          dragItemId={dragItemId}
-          setDragItemId={setDragItemId}
+          dragItem={dragItem}
+          setDragItem={setDragItem}
           subTopicsData={subTopicsData}
         />
         {subTopicsData.subTopics.map((subTopicsData) => (

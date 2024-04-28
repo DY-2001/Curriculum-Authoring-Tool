@@ -8,7 +8,10 @@ import { TopicContext } from "../../App";
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { topicsData } = useContext(TopicContext);
-  const { dragItemId, setDragItemId } = useState(null);
+  const { dragItem, setDragItem } = useState({
+    dragItemId: null,
+    dragItemHierarchy: null,
+  });
 
   return (
     <>
@@ -16,8 +19,8 @@ const Home = () => {
         <Header />
         <Topic
           subTopicsData={topicsData}
-          dragItemId={dragItemId}
-          setDragItemId={setDragItemId}
+          dragItem={dragItem}
+          setDragItem={setDragItem}
         />
         <button
           onClick={() => setIsModalOpen(true)}
