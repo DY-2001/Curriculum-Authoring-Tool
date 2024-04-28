@@ -61,17 +61,20 @@ const ParticularTopic = ({ subTopicsData, dragItem, setDragItem }) => {
     setDragItem(draggedItem);
   };
 
-  const handleDrop = (e, dropItemId, dropItemHierarchy) => {
+  const handleDrop = (dropItemId, dropItemHierarchy) => {
     if (
       dragItem.dragItemId === dropItemId ||
-      dragItem.dragItemHierarchy > dropItemHierarchy
+      dragItem.dragItemHierarchy < dropItemHierarchy ||
+      Math.abs(dropItemHierarchy - dragItem.dragItemHierarchy) > 1
     )
       return;
     let TreeData = { ...topicsData };
     let newTreeData = handleDragAndDrop(
       TreeData,
       dragItem.dragItemId,
-      dropItemId
+      dropItemId,
+      dragItem.dragItemHierarchy,
+      dropItemHierarchy,
     );
     setTopicsData(newTreeData);
   };
@@ -80,8 +83,8 @@ const ParticularTopic = ({ subTopicsData, dragItem, setDragItem }) => {
     <>
       <div
         onDragOver={(e) => e.preventDefault()}
-        onDrop={(e) =>
-          handleDrop(e, subTopicsData.id, subTopicsData.topicHierarchy)
+        onDrop={() =>
+          handleDrop(subTopicsData.id, subTopicsData.topicHierarchy)
         }
         className={styles["topicStyles"]}
       >

@@ -21,7 +21,12 @@ const Topic = ({ subTopicsData, dragItem, setDragItem }) => {
           subTopicsData={subTopicsData}
         />
         {subTopicsData.subTopics.map((subTopicsData) => (
-          <Topic key={subTopicsData.id} subTopicsData={subTopicsData} />
+          <Topic
+            key={subTopicsData.id}
+            subTopicsData={subTopicsData}
+            dragItem={dragItem}
+            setDragItem={setDragItem}
+          />
         ))}
       </>
     );
@@ -29,7 +34,12 @@ const Topic = ({ subTopicsData, dragItem, setDragItem }) => {
     return (
       <>
         {subTopicsData.subTopics.map((subTopicsData) => (
-          <Topic key={subTopicsData.id} subTopicsData={subTopicsData} />
+          <Topic
+            key={subTopicsData.id}
+            subTopicsData={subTopicsData}
+            dragItem={dragItem}
+            setDragItem={setDragItem}
+          />
         ))}
       </>
     );

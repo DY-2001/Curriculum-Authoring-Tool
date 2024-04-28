@@ -166,8 +166,74 @@ const useTreeOperations = () => {
     }
   }
 
-  function handleDragAndDrop(tree, dragItemId, dropItemId) {
-    
+  function findNode(tree, id) {
+    for (let i = 0; i < tree.subTopics.length; i++) {
+      if (tree.subTopics[i].id === id) {
+        return tree.subTopics[i];
+      } else {
+        let newTree = tree.subTopics[i];
+        for (let j = 0; j < newTree.subTopics.length; j++) {
+          if (newTree.subTopics[j].id === id) {
+            return newTree.subTopics[j];
+          } else {
+            let newSubTree = newTree.subTopics[j];
+            for (let k = 0; k < newSubTree.subTopics.length; k++) {
+              if (newSubTree.subTopics[k].id === id) {
+                return newSubTree.subTopics[k];
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  function findParentNode(tree, id) {
+    for (let i = 0; i < tree.subTopics.length; i++) {
+      if (tree.subTopics[i].id === id) {
+        return tree;
+      } else {
+        let newTree = tree.subTopics[i];
+        for (let j = 0; j < newTree.subTopics.length; j++) {
+          if (newTree.subTopics[j].id === id) {
+            return newTree;
+          } else {
+            let newSubTree = newTree.subTopics[j];
+            for (let k = 0; k < newSubTree.subTopics.length; k++) {
+              if (newSubTree.subTopics[k].id === id) {
+                return newSubTree;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  function handleDragAndDrop(
+    tree,
+    dragItemId,
+    dropItemId,
+    dragItemHierarchy,
+    dropItemHierarchy
+  ) {
+    if (dragItemHierarchy > dropItemHierarchy) {
+      let dragNode = findNode(tree, dragItemId);
+      let newTreeAfterDeletion = deleteNode(tree, tree, dragItemId);
+      let dropNode = findNode(newTreeAfterDeletion, dropItemId);
+      dropNode.subTopics.unshift(dragNode);
+      return tree;
+    } else {
+      let dragNode = findNode(tree, dragItemId);
+      let newTreeAfterDeletion = deleteNode(tree, tree, dragItemId);
+      let parentNode = findParentNode(newTreeAfterDeletion, dropItemId);
+      for (let i = 0; i < parentNode.subTopics.length; i++) {
+        if (parentNode.subTopics[i].id === dropItemId) {
+          parentNode.subTopics.splice(i + 1, 0, dragNode);
+          return tree;
+        }
+      }
+    }
   }
 
   return {

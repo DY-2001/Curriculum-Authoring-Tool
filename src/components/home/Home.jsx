@@ -8,7 +8,7 @@ import { TopicContext } from "../../App";
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { topicsData } = useContext(TopicContext);
-  const { dragItem, setDragItem } = useState({
+  const [dragItem, setDragItem] = useState({
     dragItemId: null,
     dragItemHierarchy: null,
   });
