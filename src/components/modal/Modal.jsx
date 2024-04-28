@@ -11,18 +11,21 @@ const Modal = ({
 }) => {
   const [inputValue, setInputValue] = useState("");
   const { insertNode, deleteNode } = useTreeOperations();
-  const topicsData = useContext(TopicContext);
+  const { topicsData, setTopicsData } = useContext(TopicContext);
 
   if (!isModalOpen) {
     return null;
   }
 
   const handleSubmit = () => {
+    const treeData = { ...topicsData };
     if (modalType === "standard") {
-      insertNode(topicsData, inputValue);
+      let newTreeData = insertNode(treeData, treeData, inputValue);
+      setTopicsData(newTreeData);
       setInputValue("");
     } else if (modalType === "delete") {
-      deleteNode(topicsData, subTopicsDataId);
+      let newTreeData = deleteNode(treeData, treeData, subTopicsDataId);
+      setTopicsData(newTreeData);
     }
     setIsModalOpen(false);
   };

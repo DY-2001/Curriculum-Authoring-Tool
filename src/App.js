@@ -9,7 +9,7 @@ function App() {
   const [topicsData, setTopicsData] = useState(topics);
   return (
     <div className="App">
-      <TopicContext.Provider value={topicsData}>
+      <TopicContext.Provider value={{ topicsData, setTopicsData }}>
         <Home />
       </TopicContext.Provider>
     </div>

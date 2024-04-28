@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styles from "./Home.module.css";
 import Header from "../header/Header";
 import Topic from "../topic/Topic";
@@ -6,8 +6,8 @@ import Modal from "../modal/Modal";
 import { TopicContext } from "../../App";
 
 const Home = () => {
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const topicsData = useContext(TopicContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { topicsData } = useContext(TopicContext);
 
   return (
     <>

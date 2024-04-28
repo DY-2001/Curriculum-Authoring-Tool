@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./ParticularTopic.module.css";
 import classNames from "classnames";
 import Line from "../line/Line";
 import Modal from "../modal/Modal";
+import { TopicContext } from "../../App";
+import useTreeOperations from "../../hooks/useTreeOperations";
 
 const ParticularTopic = ({ subTopicsData }) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
-  
+  const topicsData = useContext(TopicContext);
+  const { indentNode } = useTreeOperations();
+
+  if (subTopicsData.isHidden) {
+    return null;
+  }
 
   let className = "";
   if (subTopicsData.topicHierarchy === "2") {
@@ -34,6 +41,11 @@ const ParticularTopic = ({ subTopicsData }) => {
               src="/images/next.png"
               title="indent"
               className={styles["actionIcon"]}
+              onClick={indentNode(
+                topicsData,
+                subTopicsData.id,
+                subTopicsData.topicHierarchy
+              )}
             />
             <img
               src="/images/bin.png"
