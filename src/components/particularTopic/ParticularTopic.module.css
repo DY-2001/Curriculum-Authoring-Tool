@@ -5,15 +5,15 @@
 .topicActionAndName {
     display: flex;
     margin: 10px 0px 10px 0px;
-    gap: 50vh;
+    gap: 20vw;
 }
 
 .actionContainer {
-    width: 30vh;
+    width: 14vw;
 }
 
 .topicContainer {
-    width: 100vh;
+    width: 17vw;
 }
 
 .actionIcon {

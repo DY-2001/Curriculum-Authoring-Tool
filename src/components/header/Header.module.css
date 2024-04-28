@@ -13,11 +13,23 @@
 .subHeader {
     display: flex;
     margin: 10px 0px 10px 0px;
-    gap: 50vh;
+    gap: 20vw;
 }
 
 .actionContainer {
-    width: 30vh;
+    width: 14vw;
+
+    p:nth-child(n + 2) {
+        font-size: 12px;
+        color: gray;
+        font-family: "PT Sans", sans-serif;
+        font-weight: 600;
+        font-style: normal;
+    }
+}
+
+.standardContainer {
+    width: 17vw;
 
     p:nth-child(n + 2) {
         font-size: 12px;

@@ -35,12 +35,12 @@ const Modal = ({
       <div className={styles["modalContent"]}>
         <div className={styles["modalHeader"]}>
           <h2>{modalHeader}</h2>
-          <span
+
+          <img
+            src="./images/close.png"
             onClick={() => setIsModalOpen(false)}
             className={styles["close"]}
-          >
-            X
-          </span>
+          />
         </div>
         <div className={styles["modalBody"]}>
           {modalType === "standard" ? (
@@ -54,7 +54,9 @@ const Modal = ({
               className={styles["inputField"]}
             />
           ) : (
-            <p className={styles['deleteTag']}>Are you sure you want to delete this?</p>
+            <p className={styles["deleteTag"]}>
+              Are you sure you want to delete this?
+            </p>
           )}
         </div>
         <div className={styles["modalFooter"]}>

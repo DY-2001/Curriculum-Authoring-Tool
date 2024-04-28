@@ -19,7 +19,7 @@ const Header = () => {
           <p>Move, Indent,</p>
           <p>Outdent, Delete</p>
         </div>
-        <div className={styles["actionContainer"]}>
+        <div className={styles["standardContainer"]}>
           <p className={styles["actionHeader"]}>Standard</p>
           <p>The Text of the standard</p>
         </div>
