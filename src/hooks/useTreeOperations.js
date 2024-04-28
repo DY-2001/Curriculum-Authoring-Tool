@@ -55,8 +55,24 @@ const useTreeOperations = () => {
     }
   }
 
+  function updateProperty(obj, propName, propValue) {
+    if (typeof obj !== "object" || obj === null) {
+      return;
+    }
+
+    if (obj.hasOwnProperty(propName)) {
+      obj[propName] = propValue;
+    }
+
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        updateProperty(obj[key], propName, propValue);
+      }
+    }
+  }
+
   function indentNode(tree, id, hierarchy) {
-    if (hierarchy === "3") return tree;
+    if (hierarchy === "3" || tree.subTopics[0].id === id) return tree;
     for (let i = 0; i < tree.subTopics.length; i++) {
       if (tree.subTopics[i].id === id) {
         tree.subTopics[i].isHidden = true;
@@ -67,7 +83,12 @@ const useTreeOperations = () => {
           isHidden: false,
           subTopics: [],
         });
-        return tree;
+        tree.subTopics[i - 1].subTopics = [
+          ...tree.subTopics[i - 1].subTopics,
+          ...tree.subTopics[i].subTopics,
+        ];
+        let treee = deleteNode(tree, tree, tree.subTopics[i].id);
+        return treee;
       } else {
         let newTree = tree.subTopics[i];
         for (let j = 0; j < newTree.subTopics.length; j++) {
@@ -80,7 +101,47 @@ const useTreeOperations = () => {
               isHidden: false,
               subTopics: [],
             });
-            return tree;
+            newTree.subTopics[j - 1].subTopics = [
+              ...newTree.subTopics[j - 1].subTopics,
+              ...newTree.subTopics[j].subTopics,
+            ];
+            let treee = deleteNode(tree, tree, newTree.subTopics[j].id);
+            return treee;
+          }
+        }
+      }
+    }
+  }
+
+  function outdentNode(tree, id, hierarchy) {
+    if (hierarchy === "1") return tree;
+    for (let i = 0; i < tree.subTopics.length; i++) {
+      let newTree = tree.subTopics[i];
+      for (let j = 0; j < newTree.subTopics.length; j++) {
+        if (newTree.subTopics[j].id === id) {
+          newTree.subTopics[j].isHidden = true;
+          tree.subTopics.splice(i + 1, 0, {
+            id: uuidv4(),
+            topicName: newTree.subTopics[j].topicName,
+            topicHierarchy: "1",
+            isHidden: false,
+            subTopics: [],
+          });
+          return tree;
+        } else {
+          let newSubTree = newTree.subTopics[j];
+          for (let k = 0; k < newSubTree.subTopics.length; k++) {
+            if (newSubTree.subTopics[k].id === id) {
+              newSubTree.subTopics[k].isHidden = true;
+              newTree.subTopics.splice(j + 1, 0, {
+                id: uuidv4(),
+                topicName: newSubTree.subTopics[k].topicName,
+                topicHierarchy: "2",
+                isHidden: false,
+                subTopics: [],
+              });
+              return tree;
+            }
           }
         }
       }
@@ -91,6 +152,7 @@ const useTreeOperations = () => {
     insertNode,
     deleteNode,
     indentNode,
+    outdentNode,
   };
 };
 

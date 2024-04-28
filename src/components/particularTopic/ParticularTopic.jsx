@@ -9,7 +9,7 @@ import useTreeOperations from "../../hooks/useTreeOperations";
 const ParticularTopic = ({ subTopicsData }) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const { topicsData, setTopicsData } = useContext(TopicContext);
-  const { indentNode } = useTreeOperations();
+  const { indentNode, outdentNode } = useTreeOperations();
 
   if (subTopicsData.isHidden) {
     return null;
@@ -33,6 +33,16 @@ const ParticularTopic = ({ subTopicsData }) => {
     setTopicsData(newTreeData);
   };
 
+  const handleOutdentNode = () => {
+    let TreeData = { ...topicsData };
+    let newTreeData = outdentNode(
+      TreeData,
+      subTopicsData.id,
+      subTopicsData.topicHierarchy
+    );
+    setTopicsData(newTreeData);
+  };
+
   return (
     <>
       <div className={styles["topicStyles"]}>
@@ -47,6 +57,7 @@ const ParticularTopic = ({ subTopicsData }) => {
               src="/images/back.png"
               title="outdend"
               className={styles["actionIcon"]}
+              onClick={handleOutdentNode}
             />
             <img
               src="/images/next.png"
