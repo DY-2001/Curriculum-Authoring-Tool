@@ -8,12 +8,17 @@ import { TopicContext } from "../../App";
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { topicsData } = useContext(TopicContext);
+  const { dragItemId, setDragItemId } = useState(null);
 
   return (
     <>
       <div className={styles["curriculumContainer"]}>
         <Header />
-        <Topic subTopicsData={topicsData} />
+        <Topic
+          subTopicsData={topicsData}
+          dragItemId={dragItemId}
+          setDragItemId={setDragItemId}
+        />
         <button
           onClick={() => setIsModalOpen(true)}
           className={styles["addButton"]}

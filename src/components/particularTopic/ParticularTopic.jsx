@@ -6,7 +6,7 @@ import Modal from "../modal/Modal";
 import { TopicContext } from "../../App";
 import useTreeOperations from "../../hooks/useTreeOperations";
 
-const ParticularTopic = ({ subTopicsData }) => {
+const ParticularTopic = ({ subTopicsData, dragItemId, setDragItemId }) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const { topicsData, setTopicsData } = useContext(TopicContext);
   const { indentNode, outdentNode, editNameNode } = useTreeOperations();
@@ -52,22 +52,21 @@ const ParticularTopic = ({ subTopicsData }) => {
     setTopicsData(newTreeData);
   };
 
-  const handleDragStart = (e, id) => {
-    e.preventDefault();
-    e.stopPropagation();
-  };
-
   const handleDrop = (e, id) => {
-    e.preventDefault();
-    e.stopPropagation();
-  }
+    if (dragItemId === id) return;
+    console.log("dushyantist drop here", id);
+  };
 
   return (
     <>
-      <div className={styles["topicStyles"]}>
+      <div
+        onDragOver={(e) => e.preventDefault()}
+        onDrop={(e) => handleDrop(e, subTopicsData.id)}
+        className={styles["topicStyles"]}
+      >
         <div
-          onDragStart={(e) => handleDragStart(e, subTopicsData.id)}
-          onDrop={(e) => handleDrop(e, subTopicsData.id)}
+          draggable={true}
+          onDragStart={() => setDragItemId(subTopicsData.id)}
           className={styles["topicActionAndName"]}
         >
           <div className={styles["actionContainer"]}>
