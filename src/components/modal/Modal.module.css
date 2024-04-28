@@ -17,8 +17,63 @@
     padding: 20px;
     z-index: 1000;
     border-radius: 8px;
+    width: 62vh;
 }
 
 .close {
     cursor: pointer;
+}
+
+.modalHeader {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 15px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2vh;
+}
+
+.inputField {
+    border: none;
+    outline: none;
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 14px;
+    width: 80%;
+    margin-bottom: 3vh;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.7);
+}
+
+.modalFooter {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.actionButton {
+    background-color: #007BFF;
+    color: #FFF;
+    border: none;
+    outline: none;
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 14px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.deleteTag {
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 14px;
+    margin-bottom: 3vh;
 }

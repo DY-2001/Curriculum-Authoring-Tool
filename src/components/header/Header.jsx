@@ -13,15 +13,15 @@ const Header = () => {
         className={styles["subjectInput"]}
       />
       <Line />
-      <div className={styles['subHeader']}>
-        <div className={styles['actionContainer']}>
-            <p>Action</p>
-            <p>Move, Indent,</p>
-            <p>Outdent, Delete</p>
+      <div className={styles["subHeader"]}>
+        <div className={styles["actionContainer"]}>
+          <p className={styles["actionHeader"]}>Action</p>
+          <p>Move, Indent,</p>
+          <p>Outdent, Delete</p>
         </div>
-        <div className={styles['actionContainer']}>
-            <p>Standard</p>
-            <p>The Text of the standard</p>
+        <div className={styles["actionContainer"]}>
+          <p className={styles["actionHeader"]}>Standard</p>
+          <p>The Text of the standard</p>
         </div>
       </div>
       <Line />

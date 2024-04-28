@@ -25,23 +25,27 @@
 
 
 .mainTopicStyles {
-    color: red;
-    font-weight: 700;
+    color: #f55936;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     border: none;
     outline: none;
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 14px;
 }
 
 .subTopicStyles {
     padding-left: 30px;
-    color: blue;
+    color: #C65BCF;
     font-weight: 700;
 }
 
 .subSubTopicStyles {
     padding-left: 60px;
-    color: black;
+    color: #AF8260;
     font-weight: 700;
 }

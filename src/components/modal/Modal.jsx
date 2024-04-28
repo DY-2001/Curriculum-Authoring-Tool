@@ -50,14 +50,21 @@ const Modal = ({
               onChange={(e) => {
                 setInputValue(e.target.value);
               }}
+              placeholder="Enter the standard name"
+              className={styles["inputField"]}
             />
           ) : (
-            <p>Are you sure you want to delete this?</p>
+            <p className={styles['deleteTag']}>Are you sure you want to delete this?</p>
           )}
         </div>
         <div className={styles["modalFooter"]}>
-          <button onClick={() => setIsModalOpen(false)}>Cancel</button>
-          <button onClick={handleSubmit}>
+          <button
+            className={styles["actionButton"]}
+            onClick={() => setIsModalOpen(false)}
+          >
+            Cancel
+          </button>
+          <button className={styles["actionButton"]} onClick={handleSubmit}>
             {modalType === "delete" ? "Delete" : "Submit"}
           </button>
         </div>

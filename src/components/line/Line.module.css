@@ -1,4 +1,6 @@
-.lineStyles {
-    
+hr {
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #adc7af;
+    margin: 0.7em 0;
 }
-
