@@ -49,3 +49,27 @@
     color: #AF8260;
     font-weight: 700;
 }
+
+@media (max-width: 768px) {
+    .topicActionAndName {
+        gap: 10vw;
+    }
+
+    .actionContainer {
+        width: 20vw;
+    }
+}
+
+@media(max-width: 530px) {
+    .topicActionAndName {
+        gap: 5vw;
+    }
+
+    .actionContainer {
+        width: 25vw;
+    }
+
+    .mainTopicStyles {
+        width: 40vw;
+    }
+}
