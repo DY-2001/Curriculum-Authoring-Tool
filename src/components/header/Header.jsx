@@ -48,6 +48,7 @@ const Header = () => {
   const handleLoad = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
+    reader.readAsText(file);
 
     reader.onload = (e) => {
       const contents = e.target.result;
@@ -55,37 +56,18 @@ const Header = () => {
 
       let outputData = {
         id: uuidv4(),
+        topicHierarchy: 0,
         topicName: "Curriculum",
         isHidden: true,
         subTopics: [],
       };
 
       for (let i = 1; i < lines.length; i++) {
-        if (lines[i].startsWith(" ")) {
-          let newSubTopic = {
-            id: uuidv4(),
-            topicHierarchy: lines[i].split(" ")[0].length,
-            topicName: lines[i].split(" ")[1],
-            isHidden: false,
-            subTopics: [],
-          };
-          outputData.subTopics.push(newSubTopic);
-        } else if (lines[i].startsWith("  ")) {
-          let newSubSubTopic = {
-            id: uuidv4(),
-            topicHierarchy: lines[i].split(" ")[0].length,
-            topicName: lines[i].split(" ")[1],
-            isHidden: false,
-            subTopics: [],
-          };
-          outputData.subTopics[outputData.subTopics.length - 1].subTopics.push(
-            newSubSubTopic
-          );
-        } else if (lines[i].startsWith("   ")) {
+        if (lines[i].startsWith("   ")) {
           let newSubSubSubTopic = {
             id: uuidv4(),
-            topicHierarchy: lines[i].split(" ")[0].length,
-            topicName: lines[i].split(" ")[1],
+            topicHierarchy: "3",
+            topicName: lines[i].slice(3),
             isHidden: false,
             subTopics: [],
           };
@@ -93,9 +75,28 @@ const Header = () => {
             outputData.subTopics[outputData.subTopics.length - 1].subTopics
               .length - 1
           ].subTopics.push(newSubSubSubTopic);
+        } else if (lines[i].startsWith("  ")) {
+          let newSubSubTopic = {
+            id: uuidv4(),
+            topicHierarchy: "2",
+            topicName: lines[i].slice(2),
+            isHidden: false,
+            subTopics: [],
+          };
+          outputData.subTopics[outputData.subTopics.length - 1].subTopics.push(
+            newSubSubTopic
+          );
+        } else if (lines[i].startsWith(" ")) {
+          let newSubTopic = {
+            id: uuidv4(),
+            topicHierarchy: "1",
+            topicName: lines[i].slice(1),
+            isHidden: false,
+            subTopics: [],
+          };
+          outputData.subTopics.push(newSubTopic);
         }
       }
-
       setTopicsData(outputData);
     };
   };
