@@ -7,6 +7,7 @@ const useTreeOperations = () => {
         id: uuidv4(),
         topicName,
         topicHierarchy: `${parseInt(tree.topicHierarchy) + 1}`,
+        isHidden: false,
         subTopics: [],
       });
       return treeData;
@@ -23,6 +24,7 @@ const useTreeOperations = () => {
       id: uuidv4(),
       topicName,
       topicHierarchy: `${parseInt(prevTree.topicHierarchy) + 1}`,
+      isHidden: false,
       subTopics: [],
     });
     return treeData;
@@ -54,20 +56,35 @@ const useTreeOperations = () => {
   }
 
   function indentNode(tree, id, hierarchy) {
-    // if (hierarchy === "3") return;
-    // for (let i = 0; i < tree.subTopics.length; i++) {
-    //   if (tree.subTopics[i].id === id) {
-    //     tree.subTopics[i].isHidden = true;
-    //     tree.subTopics[i].subTopics.unShift({
-    //       id: uuidv4(),
-    //       topicName: tree.subTopics[i].topicName,
-    //       topicHierarchy: `${parseInt(tree.subTopics[i].hierarchy) + 1}`,
-    //       isHidden: false,
-    //       subTopics: [],
-    //     });
-    //   }
-    //   indentNode(tree.subTopics[i], id, tree.subTopics[i].hierarchy);
-    // }
+    if (hierarchy === "3") return tree;
+    for (let i = 0; i < tree.subTopics.length; i++) {
+      if (tree.subTopics[i].id === id) {
+        tree.subTopics[i].isHidden = true;
+        tree.subTopics[i].subTopics.unshift({
+          id: uuidv4(),
+          topicName: tree.subTopics[i].topicName,
+          topicHierarchy: "2",
+          isHidden: false,
+          subTopics: [],
+        });
+        return tree;
+      } else {
+        let newTree = tree.subTopics[i];
+        for (let j = 0; j < newTree.subTopics.length; j++) {
+          if (newTree.subTopics[j].id === id) {
+            newTree.subTopics[j].isHidden = true;
+            newTree.subTopics[j].subTopics.unshift({
+              id: uuidv4(),
+              topicName: newTree.subTopics[j].topicName,
+              topicHierarchy: "3",
+              isHidden: false,
+              subTopics: [],
+            });
+            return tree;
+          }
+        }
+      }
+    }
   }
 
   return {

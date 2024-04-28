@@ -8,7 +8,7 @@ import useTreeOperations from "../../hooks/useTreeOperations";
 
 const ParticularTopic = ({ subTopicsData }) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const topicsData = useContext(TopicContext);
+  const { topicsData, setTopicsData } = useContext(TopicContext);
   const { indentNode } = useTreeOperations();
 
   if (subTopicsData.isHidden) {
@@ -21,6 +21,17 @@ const ParticularTopic = ({ subTopicsData }) => {
   } else if (subTopicsData.topicHierarchy === "3") {
     className = styles.subSubTopicStyles;
   }
+
+  const handlIndentNode = () => {
+    let TreeData = { ...topicsData };
+    let newTreeData = indentNode(
+      TreeData,
+      subTopicsData.id,
+      subTopicsData.topicHierarchy
+    );
+    console.log("dushyantist new tree data", newTreeData)
+    setTopicsData(newTreeData);
+  };
 
   return (
     <>
@@ -41,11 +52,7 @@ const ParticularTopic = ({ subTopicsData }) => {
               src="/images/next.png"
               title="indent"
               className={styles["actionIcon"]}
-              onClick={indentNode(
-                topicsData,
-                subTopicsData.id,
-                subTopicsData.topicHierarchy
-              )}
+              onClick={handlIndentNode}
             />
             <img
               src="/images/bin.png"
