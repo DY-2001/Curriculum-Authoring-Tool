@@ -55,22 +55,6 @@ const useTreeOperations = () => {
     }
   }
 
-  function updateProperty(obj, propName, propValue) {
-    if (typeof obj !== "object" || obj === null) {
-      return;
-    }
-
-    if (obj.hasOwnProperty(propName)) {
-      obj[propName] = propValue;
-    }
-
-    for (let key in obj) {
-      if (obj.hasOwnProperty(key)) {
-        updateProperty(obj[key], propName, propValue);
-      }
-    }
-  }
-
   function indentNode(tree, id, hierarchy) {
     if (hierarchy === "3" || tree.subTopics[0].id === id) return tree;
     for (let i = 0; i < tree.subTopics.length; i++) {
