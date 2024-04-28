@@ -30,6 +30,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    border: none;
+    outline: none;
 }
 
 .subTopicStyles {

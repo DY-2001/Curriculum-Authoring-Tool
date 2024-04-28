@@ -9,7 +9,10 @@ import useTreeOperations from "../../hooks/useTreeOperations";
 const ParticularTopic = ({ subTopicsData }) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const { topicsData, setTopicsData } = useContext(TopicContext);
-  const { indentNode, outdentNode } = useTreeOperations();
+  const { indentNode, outdentNode, editNameNode } = useTreeOperations();
+  const [inputNodeName, setInputNodeName] = React.useState(
+    subTopicsData.topicName
+  );
 
   if (subTopicsData.isHidden) {
     return null;
@@ -29,7 +32,6 @@ const ParticularTopic = ({ subTopicsData }) => {
       subTopicsData.id,
       subTopicsData.topicHierarchy
     );
-    console.log("dushyantist new tree data", newTreeData)
     setTopicsData(newTreeData);
   };
 
@@ -40,6 +42,13 @@ const ParticularTopic = ({ subTopicsData }) => {
       subTopicsData.id,
       subTopicsData.topicHierarchy
     );
+    setTopicsData(newTreeData);
+  };
+
+  const handleNameNode = (value) => {
+    setInputNodeName(value);
+    let TreeData = { ...topicsData };
+    let newTreeData = editNameNode(TreeData, subTopicsData.id, value);
     setTopicsData(newTreeData);
   };
 
@@ -75,16 +84,17 @@ const ParticularTopic = ({ subTopicsData }) => {
             />
           </div>
           <div className={styles["topicContainer"]}>
-            <p
+            <input
+              type="text"
+              value={inputNodeName}
+              onChange={(e) => handleNameNode(e.target.value)}
               className={classNames(styles["mainTopicStyles"], {
                 [styles["subTopicStyles"]]:
                   subTopicsData.topicHierarchy === "2",
                 [styles["subSubTopicStyles"]]:
                   subTopicsData.topicHierarchy === "3",
               })}
-            >
-              {subTopicsData.topicName}
-            </p>
+            />
           </div>
         </div>
         <Line />

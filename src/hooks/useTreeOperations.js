@@ -75,6 +75,8 @@ const useTreeOperations = () => {
         return treee;
       } else {
         let newTree = tree.subTopics[i];
+        if (newTree.subTopics.length === 0) continue;
+        if (newTree.subTopics[0].id === id) return tree;
         for (let j = 0; j < newTree.subTopics.length; j++) {
           if (newTree.subTopics[j].id === id) {
             newTree.subTopics[j].isHidden = true;
@@ -132,11 +134,37 @@ const useTreeOperations = () => {
     }
   }
 
+  function editNameNode(tree, id, newName) {
+    for (let i = 0; i < tree.subTopics.length; i++) {
+      if (tree.subTopics[i].id === id) {
+        tree.subTopics[i].topicName = newName;
+        return tree;
+      } else {
+        let newTree = tree.subTopics[i];
+        for (let j = 0; j < newTree.subTopics.length; j++) {
+          if (newTree.subTopics[j].id === id) {
+            newTree.subTopics[j].topicName = newName;
+            return tree;
+          } else {
+            let newSubTree = newTree.subTopics[j];
+            for (let k = 0; k < newSubTree.subTopics.length; k++) {
+              if (newSubTree.subTopics[k].id === id) {
+                newSubTree.subTopics[k].topicName = newName;
+                return tree;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
   return {
     insertNode,
     deleteNode,
     indentNode,
     outdentNode,
+    editNameNode,
   };
 };
 
