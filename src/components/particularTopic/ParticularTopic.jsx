@@ -9,7 +9,8 @@ import useTreeOperations from "../../hooks/useTreeOperations";
 const ParticularTopic = ({ subTopicsData, dragItemId, setDragItemId }) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const { topicsData, setTopicsData } = useContext(TopicContext);
-  const { indentNode, outdentNode, editNameNode } = useTreeOperations();
+  const { indentNode, outdentNode, editNameNode, handleDragAndDrop } =
+    useTreeOperations();
   const [inputNodeName, setInputNodeName] = React.useState(
     subTopicsData.topicName
   );
@@ -52,9 +53,11 @@ const ParticularTopic = ({ subTopicsData, dragItemId, setDragItemId }) => {
     setTopicsData(newTreeData);
   };
 
-  const handleDrop = (e, id) => {
-    if (dragItemId === id) return;
-    console.log("dushyantist drop here", id);
+  const handleDrop = (e, dropItemId) => {
+    if (dragItemId === dropItemId) return;
+    let TreeData = { ...topicsData };
+    let newTreeData = handleDragAndDrop(TreeData, dragItemId, dropItemId);
+    setTopicsData(newTreeData);
   };
 
   return (
