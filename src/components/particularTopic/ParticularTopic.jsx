@@ -52,10 +52,24 @@ const ParticularTopic = ({ subTopicsData }) => {
     setTopicsData(newTreeData);
   };
 
+  const handleDragStart = (e, id) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
+
+  const handleDrop = (e, id) => {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
   return (
     <>
       <div className={styles["topicStyles"]}>
-        <div className={styles["topicActionAndName"]}>
+        <div
+          onDragStart={(e) => handleDragStart(e, subTopicsData.id)}
+          onDrop={(e) => handleDrop(e, subTopicsData.id)}
+          className={styles["topicActionAndName"]}
+        >
           <div className={styles["actionContainer"]}>
             <img
               src="/images/move.png"
@@ -94,6 +108,7 @@ const ParticularTopic = ({ subTopicsData }) => {
                 [styles["subSubTopicStyles"]]:
                   subTopicsData.topicHierarchy === "3",
               })}
+              placeholder="Enter topic name..."
             />
           </div>
         </div>

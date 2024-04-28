@@ -11,6 +11,7 @@ const Header = () => {
         value={subject}
         onChange={(e) => setSubject(e.target.value)}
         className={styles["subjectInput"]}
+        placeholder="Enter the subject name..."
       />
       <Line />
       <div className={styles["subHeader"]}>
