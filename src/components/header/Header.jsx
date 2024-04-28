@@ -6,13 +6,27 @@ const Header = () => {
   const [subject, setSubject] = useState("MATHEMATICS");
   return (
     <div className={styles["headerContainer"]}>
-      <input
-        type="text"
-        value={subject}
-        onChange={(e) => setSubject(e.target.value)}
-        className={styles["subjectInput"]}
-        placeholder="Enter the subject name..."
-      />
+      <div className={styles["mainHeader"]}>
+        <input
+          type="text"
+          value={subject}
+          onChange={(e) => setSubject(e.target.value)}
+          className={styles["subjectInput"]}
+          placeholder="Enter the subject name..."
+        />
+        <div className={styles["loadAndSave"]}>
+          <button className={styles["loadButton"]}>
+            <input
+              type="file"
+              accept="application/json"
+            />
+            Load
+          </button>
+
+          <button className={styles["saveButton"]}>Save</button>
+        </div>
+      </div>
+
       <Line />
       <div className={styles["subHeader"]}>
         <div className={styles["actionContainer"]}>
