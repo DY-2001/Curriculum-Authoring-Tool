@@ -1,4 +1,4 @@
-##Live site url : https://662ee10e769e90373ffd4b74--curriculum-dy2001.netlify.app/
+##Live site url : https://curriculum-dy2001.netlify.app/
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
